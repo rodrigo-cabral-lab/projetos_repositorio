@@ -17,7 +17,7 @@ function out = resolve_(func, input, varargin)
                 arg = '';
             end
             in.(varargin{3}) = input.(varargin{3})(i);
-            out(i) = resolve(func, in, varargin{1}, varargin{2}, arg);
+            out(i) = resolve_(func, in, varargin{1}, varargin{2}, arg);
         end
     else
         %%

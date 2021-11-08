@@ -14,6 +14,6 @@ function leg = legenda_(campo, str)
             leg{i} = ['$',str,num2str(campo(i-len)),'$'];
         end
     end
-    leg = legend(leg, 'Interpreter','Latex','Location','Best', 'color','white');
+    leg = legend(leg, 'Interpreter','Latex','Location','Best');
     leg.FontSize = 11;
 end
