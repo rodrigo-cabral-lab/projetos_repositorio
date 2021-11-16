@@ -1,7 +1,6 @@
 %programa stodola1.m
-% método de Stodola para obtenção da primeira frequencia 
-% e do primeiro modo de vibração
-% Prof. Reyolando Brasil março 2018
+% mÃ©todo de Stodola para obtenÃ§Ã£o da primeira frequencia 
+% e do primeiro modo de vibraÃ§Ã£o
 clc
 clear all
 close all
