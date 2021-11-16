@@ -1,7 +1,6 @@
 %programa stodola1_asa.m
-% método de Stodola para obtenção da primeira frequencia 
-% e do primeiro modo de vibração (modo fundamental)
-% Prof. Reyolando Brasil abril 2018
+% mÃ©todo de Stodola para obtenÃ§Ã£o da primeira frequencia 
+% e do primeiro modo de vibraÃ§Ã£o (modo fundamental)
 clc
 clear all
 close all
