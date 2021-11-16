@@ -1,32 +1,31 @@
-% torção de seção retangular
-% diferenças finitas
-% Prof. Reyolando Brasil abril 2018
+% torÃ§Ã£o de seÃ§Ã£o retangular
+% diferenÃ§as finitas
 %
 clc
 clear
 %
-%geração da malha
+%geraÃ§Ã£o da malha
 %
-nd=64;%número de divisões da malha
-np1=nd+1;%número de nós da malha em cada direção
-neq=(nd-1)^2;%número de equações a resolver
-a=4;b=4;%dimensões do retângulo
+nd=64;%nÃºmero de divisÃµes da malha
+np1=nd+1;%nÃºmero de nÃ³s da malha em cada direÃ§Ã£o
+neq=(nd-1)^2;%nÃºmero de equaÃ§Ãµes a resolver
+a=4;b=4;%dimensÃµes do retÃ¢ngulo
 hx=a/nd;hy=b/nd;
 %
-%inicialização
+%inicializaÃ§Ã£o
 %
-a=zeros(np1*np1,np1*np1);%número de nós da malha = np1*np1
+a=zeros(np1*np1,np1*np1);%nÃºmero de nÃ³s da malha = np1*np1
 b=zeros(np1*np1,1);
 kk=zeros(neq,1);
 aa=zeros(neq,neq);
 bb=zeros(neq,1);
 %
-%geração das equações de diferenças finitas para os nós internos
+%geraÃ§Ã£o das equaÃ§Ãµes de diferenÃ§as finitas para os nÃ³s internos
 %
 m=0;
-for i=2:nd % número da linha
+for i=2:nd % nÃºmero da linha
     k=(i-1)*np1+1;ii=1;
-    for j=2:nd %número da coluna
+    for j=2:nd %nÃºmero da coluna
         k=k+1;m=m+1;kk(m,1)=k;
         a(k,k-1)=-1/hx^2;
         a(k,k+1)=-1/hx^2;
