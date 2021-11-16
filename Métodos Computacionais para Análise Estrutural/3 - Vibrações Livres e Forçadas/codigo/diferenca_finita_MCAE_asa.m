@@ -1,7 +1,6 @@
 %arquivo diferencas_finitas_MCAE_asa.m
-%março 2018 - Prof. Reyolando Brasil
-%integração no tempo por diferenças finitas
-%vários graus de liberdade
+%integraÃ§Ã£o no tempo por diferenÃ§as finitas
+%vÃ¡rios graus de liberdade
 %Exemplo: asa
 clear all
 close all
@@ -18,10 +17,10 @@ K=[600.    1800.  -600.    1800.;
    1800.   3600.  0.   14400.];
 %
 tf=7; %tempo final em segundos
-h=0.0035;% passo de integração em segundos // para calcular pegar omega4 (maior período) e dividir por 10
-%omega4=16*pi²sqrt(E*I/(mbarra*L^4))
-%omega1=pi²sqrt(E*I/(mbarra*L^4))
-np=tf/h; % número de passos de integração
+h=0.0035;% passo de integraÃ§Ã£o em segundos // para calcular pegar omega4 (maior perÃ­odo) e dividir por 10
+%omega4=16*piÂ²sqrt(E*I/(mbarra*L^4))
+%omega1=piÂ²sqrt(E*I/(mbarra*L^4))
+np=tf/h; % nÃºmero de passos de integraÃ§Ã£o
 p=zeros(nn,np);%vetor de carregamento
 u=zeros(nn,np);%vetor de deslocamentos
 up=zeros(nn,np);%vetor de velocidades
@@ -32,23 +31,23 @@ dp=zeros(np,1);
 alfa=1;beta= 0.001;% %coef de amortecimento de Rayleigh
 C=alfa*M+beta*K;%matriz de amortecimento de Rayleigh
 %
-%constantes do método
+%constantes do mÃ©todo
 %
 KC=M/h/h+C/2/h;A1=2*M/h/h-K;A2=C/2/h-M/h/h;
 %
-% condições inciais
+% condiÃ§Ãµes inciais
 %u(:,1)= ;up(:,1); % consideradas nulas no exemplo
 t(1)=0;
-p(:,1)=cargasa(t(1));%chamar função carregamento
+p(:,1)=cargasa(t(1));%chamar funÃ§Ã£o carregamento
 %
-upp=M\(p(:,1)-C*up(:,1)-K*u(:,1));%aceleração incial
-u(:,2)=upp*h*h/2+h*up(:,1)+u(:,1);%deslocamento no início do segundo passo
+upp=M\(p(:,1)-C*up(:,1)-K*u(:,1));%aceleraÃ§Ã£o incial
+u(:,2)=upp*h*h/2+h*up(:,1)+u(:,1);%deslocamento no inÃ­cio do segundo passo
 %
 %loop principal
 %
 for n=2:np
     t(n)=t(n-1)+h;
-    p(:,n)=cargasa(t(n)); %chamar função carregamento
+    p(:,n)=cargasa(t(n)); %chamar funÃ§Ã£o carregamento
     pc=p(:,n)+A1*u(:,n)+A2*u(:,n-1);
     u(:,n+1)=KC\pc;
     up(:,n)=(u(:,n+1)-u(:,n-1))/(2*h);
@@ -56,14 +55,14 @@ end
 %
 %plotagem de deslocamentos
 %
-% direção 1
+% direÃ§Ã£o 1
 %
 for i=1:np
     dp(i,1)=u(1,i);
 end
 plot(t,dp)
 xlabel('t (s)')
-ylabel('Deslocamentos diração 1 (m)')
+ylabel('Deslocamentos diraÃ§Ã£o 1 (m)')
 grid
 
 
