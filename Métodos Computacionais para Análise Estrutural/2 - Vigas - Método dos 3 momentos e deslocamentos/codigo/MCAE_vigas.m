@@ -1,41 +1,41 @@
 %nome do arquivo VIGA_deslocamentos.m
-%programa de EF para calculo estático de vigas
+%programa de EF para calculo estÃ¡tico de vigas
 %viga
-% Prof Reyolando Brasil - março 2018
+% Rodrigo V. Cabral - UFABC
 %
 clc
 clear all
 close all
 %entrada de dados
 %
-%dimensões do problema
+%dimensÃµes do problema
 %
-nno=3;%número de nós
-nglpn=2;%número de graus de liberdade por nó
-nds=nno*nglpn; %número de deslocamentos do sistema
-nel=2;%número de elementos
-nnel=2; %número de nós por elemento
-ndpel=nnel*nglpn;%número de deslocamentos por elemento
+nno=3;%nÃºmero de nÃ³s
+nglpn=2;%nÃºmero de graus de liberdade por nÃ³
+nds=nno*nglpn; %nÃºmero de deslocamentos do sistema
+nel=2;%nÃºmero de elementos
+nnel=2; %nÃºmero de nÃ³s por elemento
+ndpel=nnel*nglpn;%nÃºmero de deslocamentos por elemento
 %
-%coordenadas X dos nós da viga
+%coordenadas X dos nÃ³s da viga
 %
 gcoord=[0;6;10];
 %
-%conectividade por elemento (n. dos nós de cada elemento)
+%conectividade por elemento (n. dos nÃ³s de cada elemento)
 %
 nodel=[1 2;2 3];
 %
-% matriz de número de graus de liberdade por nó
+% matriz de nÃºmero de graus de liberdade por nÃ³
 %
 LN=zeros(nno,nglpn);
 %
-%condições de contorno (n. de nó restrito e direções restritas ou livres)
+%condiÃ§Ãµes de contorno (n. de nÃ³ restrito e direÃ§Ãµes restritas ou livres)
 %se fixa = -1; se livre = 0
 %
 LN(1,:)=[-1 -1];
 LN(3,:)=[-1 -1];
 %
-%dados físicos dos elementos, mód elasticidade, densidade, area da seção
+%dados fÃ­sicos dos elementos, mÃ³d elasticidade, densidade, area da seÃ§Ã£o
 %
 EM(1)=1.2e+06;
 EM(2)=1.2e+06;
@@ -43,7 +43,7 @@ EM(2)=1.2e+06;
 Ie(1)=0.0006;
 Ie(2)=0.0003;
 %
-%determinação das matrizes
+%determinaÃ§Ã£o das matrizes
 %
 %matriz LN
 %
@@ -67,7 +67,7 @@ for i=1:nno
 end      
 %
 LN
-%inicialização de matrizes e vetores
+%inicializaÃ§Ã£o de matrizes e vetores
 %
 K=zeros(nds,nds);
 p=zeros(nds,1);
@@ -112,7 +112,7 @@ k=E*I*[12/L^3 6/L^2 -12/L^3 6/L^2;
 end
 K
 %
-% solução do sistema
+% soluÃ§Ã£o do sistema
 %
 disp('deslocamentos')
 %
@@ -120,16 +120,16 @@ A=K(1:ngl,1:ngl);
 b=(P(1:ngl)-K(1:ngl,ngl+1:nds)*p(ngl+1:nds));
 p(1:ngl)=gausspivo(A,b,ngl)
 %
-%cálculo das reações de apoio
+%cÃ¡lculo das reaÃ§Ãµes de apoio
 %
-disp('Esforços Nodais inclusive reações de apoio')
+disp('EsforÃ§os Nodais inclusive reaÃ§Ãµes de apoio')
 P(ngl+1:nds)=K(ngl+1:nds,1:ngl)*p(1:ngl)+K(ngl+1:nds,ngl+1:nds)...
     *p(ngl+1:nds)
 %
-%esforços nas barras
+%esforÃ§os nas barras
 %
-disp('Esforços nas barras')
-disp('Q1(Força) Q2(Momento) Q3(Força) Q4(Momento)')
+disp('EsforÃ§os nas barras')
+disp('Q1(ForÃ§a) Q2(Momento) Q3(ForÃ§a) Q4(Momento)')
 for iel=1:nel
     for j=1:nnel
         nd(j)=nodel(iel,j);
