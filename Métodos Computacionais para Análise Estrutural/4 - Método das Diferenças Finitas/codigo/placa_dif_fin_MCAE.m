@@ -1,39 +1,38 @@
 % placas retangular
-% diferenças finitas
-% Prof. Reyolando Brasil abril 2018
+% diferenÃ§as finitas
 %
 clc
 clear
 %
-%propriedade físicas
+%propriedade fÃ­sicas
 %
-a=3;b=2;%dimensões do retângulo
+a=3;b=2;%dimensÃµes do retÃ¢ngulo
 EM=200e6;t=0.02;nu=0.3;p=2;
 D=EM*t^3/(12*(1-nu^2));pdD=p/D;
 %
-%geração da malha
+%geraÃ§Ã£o da malha
 %
-nd=4;%número de divisões da malha
+nd=4;%nÃºmero de divisÃµes da malha
 np1=nd+1;
-np3=nd+3;%múmero de nós da malha expandida em cada direção
-neq=(nd-1)^2;%número de equações a resolver
+np3=nd+3;%mÃºmero de nÃ³s da malha expandida em cada direÃ§Ã£o
+neq=(nd-1)^2;%nÃºmero de equaÃ§Ãµes a resolver
 hx=a/nd;hy=b/nd;hx4=hx*hx*hx*hx;hy4=hy*hy*hy*hy;hx2hy2=hx*hx*hy*hy;
 %
-%inicialização
+%inicializaÃ§Ã£o
 %
-A=zeros(np3*np3,np3*np3);%número de nós da malha = np1*np1
+A=zeros(np3*np3,np3*np3);%nÃºmero de nÃ³s da malha = np1*np1
 B=zeros(np3*np3,1);
 kk=zeros(neq,1);
 aa=zeros(neq,neq);
 bb=zeros(neq,1);
 %
-%geração das equações de diferenças finitas para os nós internos
+%geraÃ§Ã£o das equaÃ§Ãµes de diferenÃ§as finitas para os nÃ³s internos
 %
 m=0;
-for i=3:np1 % número da linha
+for i=3:np1 % nÃºmero da linha
     k=(i-1)*np3+2;
-    for j=3:np1 %número da coluna
-        k=k+1;m=m+1;kk(m,1)=k;%número do nó
+    for j=3:np1 %nÃºmero da coluna
+        k=k+1;m=m+1;kk(m,1)=k;%nÃºmero do nÃ³
         A(k,k-2)=1/hx4;
         A(k,k-1)=-4/hx4-4/hx2hy2;
         A(k,k+1)=-4/hx4-4/hx2hy2;
@@ -51,9 +50,9 @@ for i=3:np1 % número da linha
     end
 end
 %
-%condições de contorno: isup, iinf, iesq, idir
+%condiÃ§Ãµes de contorno: isup, iinf, iesq, idir
 %
-%código: -1=apoiado; 1=engastado
+%cÃ³digo: -1=apoiado; 1=engastado
 %
 isup=-1;iinf=-1;iesq=1;idir=1;
 %
@@ -88,7 +87,7 @@ for i=3:np1
     k=k+np3;
 end
 %
-%montagem sistema de equações
+%montagem sistema de equaÃ§Ãµes
 %
 for i=1:neq
     for j=1:neq
@@ -97,7 +96,7 @@ for i=1:neq
     bb(i)=B(kk(i));
 end
 %
-%solução do sitema
+%soluÃ§Ã£o do sitema
 %
 w=aa\bb
-%wmax=1000*max(w)%deslocamento máximo em mm
+%wmax=1000*max(w)%deslocamento mÃ¡ximo em mm
