@@ -1,7 +1,6 @@
 % Programa stodola2.m
-% método de Stodola para obtenção da ultima frequencia 
-% e do ultimo modo de vibração
-% Prof. Reyolando Brasil março 2018
+% mÃ©todo de Stodola para obtenÃ§Ã£o da ultima frequencia 
+% e do ultimo modo de vibraÃ§Ã£o
 clc
 clear all
 close all
