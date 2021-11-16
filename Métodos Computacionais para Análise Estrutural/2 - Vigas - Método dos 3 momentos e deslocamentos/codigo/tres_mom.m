@@ -1,8 +1,8 @@
-% solução de vigas continuas
-% equação dos 3 momentos
-% arquivo tres_mom.m 22/01/2013
+% soluÃ§Ã£o de vigas continuas
+% equaÃ§Ã£o dos 3 momentos
+% arquivo tres_mom.m 
 % dados do problema
-% extremidades engastadas adicionar vão fictício de grande rigidez
+% extremidades engastadas adicionar vÃ£o fictÃ­cio de grande rigidez
 nv=4;
 nn=nv+1;
 E=1;
@@ -24,21 +24,21 @@ b(2)=-e(2)*X(1);
 % momento na extremidade direita
 X(nn)=0.5;
 b(nn-1)=-e(nn)*X(nn);
-%rotações de apoio devidas ao carregamento
+%rotaÃ§Ãµes de apoio devidas ao carregamento
 % carga uniformemente distribuida
 p=[0; -1; -1; -1];
 for k=1:nv
     b(k)=b(k)-p(k)*(L(k))^3/24/E/I(k);
     b(k+1)=b(k+1)-p(k)*(L(k))^3/24/E/I(k);
 end
-% solução do sistema tridiagonal simétrico
-% eliminação a vante
+% soluÃ§Ã£o do sistema tridiagonal simÃ©trico
+% eliminaÃ§Ã£o a vante
 for k=3:nn-1
     const=e(k)/d(k-1);
     d(k)=d(k)-const*e(k);
     b(k)=b(k)-const*b(k-1);
 end
-%retrosubstiutição
+%retrosubstiutiÃ§Ã£o
 X(nn-1)=b(nn-1)/d(nn-1);
 for k=nn-2:-1:2
     X(k)=(b(k)-e(k+1)*X(k+1))/d(k);
